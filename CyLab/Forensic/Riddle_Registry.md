@@ -1,6 +1,6 @@
 Write-Up : Binary Digits
 
-##French Version:
+## French Version:
 
 📋 Informations du Challenge
 Nom du challenge : Binary Digits  
@@ -30,7 +30,7 @@ Résultat :Le décodage binaire a reconstruit les octets originaux du fichier, r
 
 Flag : picoCTF{...} (à remplacer par ton flag)
 
-##English Version:
+## English Version:
 
 📋 Challenge Info
 Challenge Name: Binary Digits
