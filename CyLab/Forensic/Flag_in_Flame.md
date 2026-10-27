@@ -44,7 +44,9 @@ Author: Prince Niyonshuti N.
 Category: Forensics  
 Difficulty: Easy
 
-### 📝 Description "The SOC team discovered a suspiciously large log file after a recent breach. When they opened it, they found an enormous block of encoded text instead of typical logs. Could there be something hidden within? Your mission is to inspect the resulting file and reveal the real purpose of it..."
+### 📝 Description
+
+"The SOC team discovered a suspiciously large log file after a recent breach. When they opened it, they found an enormous block of encoded text instead of typical logs. Could there be something hidden within? Your mission is to inspect the resulting file and reveal the real purpose of it..."
 
 ### 🔍 Step 1: Inspecting the Log File
 
