@@ -23,13 +23,13 @@ Le fichier contient un bloc massif de données textuelles encodées sous forme d
 ### 🛠️ Étape 2 : Décodage et Rendu de l'image via CyberChef
 
 Copie du texte brut depuis Mousepad vers la section Input de CyberChef.Application de la recette From Base64.  
-Utilisation de l'option de rendu/prévisualisation d'image dans CyberChef (ou enregistrement du résultat au format image).
+Utilisation de l'option de rendu/prévisualisation d'image dans CyberChef (ou enregistrement du résultat au format image).  
 Enregistrement / Téléchargement du fichier image généré.
 
 ### 🚩 Étape 3 : Extraction et Décodage Hexadécimal du Flag
 
-Ouverture de l'image générée.
-Copie du texte (chaîne de caractères hexadécimaux) figurant sur l'image.
+Ouverture de l'image générée.  
+Copie du texte (chaîne de caractères hexadécimaux) figurant sur l'image.  
 Décodage de cette chaîne hexadécimale (recette From Hex sur CyberChef) pour obtenir le texte en clair.
 
 #### Flag : picoCTF{...} (à remplacer par ton flag)
@@ -55,13 +55,13 @@ The file contains a massive block of encoded text in Base64 format.
 ### 🛠️ Step 2: Decoding and Rendering the Image with CyberChef
 
 Copy the raw text from Mousepad into CyberChef's Input section.Apply the From Base64 recipe.  
-Use the image render option in CyberChef to view/render the binary output as an image.
+Use the image render option in CyberChef to view/render the binary output as an image.  
 Download and save the rendered image file.
 
 #### 🚩 Step 3: Hexadecimal Decoding and Flag
 
-RetrievalOpen the saved image.
-Copy the hexadecimal text string displayed inside the image.
+RetrievalOpen the saved image.  
+Copy the hexadecimal text string displayed inside the image.  
 Decode the hexadecimal string (using the From Hex recipe in CyberChef) to retrieve the plaintext flag.
 
 #### Flag: picoCTF{...} (replace with your actual flag)

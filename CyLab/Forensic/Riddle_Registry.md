@@ -21,7 +21,7 @@ Observation :Le fichier contient uniquement une suite de caractères bruts compo
 
 ### 🛠️ Étape 2 : Décodage avec CyberChef
 
-Pour convertir cette suite binaire en un fichier exploitable :
+Pour convertir cette suite binaire en un fichier exploitable :  
 1-Ouverture de l'outil CyberChef.  
 2-Copie-collé du contenu du fichier dans la section Input.  
 3-Application de la recette From Binary dans la section Recipe.  
