@@ -1,72 +1,107 @@
-# Write-Up : Binary Digits
+# Write-Up : Riddle Registry
 
-## French Version:
+## 📋 Informations du Challenge
 
-### 📋 Informations du Challenge
+- **Nom du challenge :** Riddle Registry
+- **Plateforme / Événement :** picoMini by CMU-Africa
+- **Auteur :** Prince Niyonshuti N.
+- **Catégorie :** Forensics
+- **Difficulté :** Easy
 
-Nom du challenge : Binary Digits  
-Plateforme / Événement : picoCTF 2026  
-Auteur : Yahaya Meddy  
-Catégorie : Forensics  
-Difficulté : Easy
+---
 
-### 📝 Description
+## 📝 Description
 
-"This file doesn't look like much... just a bunch of 1s and 0s. But maybe it's not just random noise. Can you recover anything meaningful from this?"
+> _"Hi, intrepid investigator! 📄 🔍 You've stumbled upon a peculiar PDF filled with what seems like nothing more than garbled nonsense. But beware! Not everything is as it appears. Amidst the chaos lies a hidden treasure—an elusive flag waiting to be uncovered. Find the PDF file here Hidden Confidential Document and uncover the flag within the metadata."_
 
-### 🔍 Étape 1 : Analyse du fichier
+---
 
-Après avoir téléchargé le fichier fourni via le lien du challenge, je l'ai ouvert avec un éditeur de texte sous Kali Linux.  
-Observation :Le fichier contient uniquement une suite de caractères bruts composés de 0 et de (données sous forme binaire ASCII).
+## 🔍 Étape 1 : Inspection initiale & Premières tentatives
 
-### 🛠️ Étape 2 : Décodage avec CyberChef
+Après avoir téléchargé le fichier PDF fourni, l'analyse initiale n'a rien révélé d'anormal à première vue :
 
-Pour convertir cette suite binaire en un fichier exploitable :  
-1-Ouverture de l'outil CyberChef.  
-2-Copie-collé du contenu du fichier dans la section Input.  
-3-Application de la recette From Binary dans la section Recipe.  
-Résultat :Le décodage binaire a reconstruit les octets originaux du fichier, révélant qu'il s'agissait en réalité d'un fichier image (ex: PNG/JPG).
+1. **Ouverture du fichier :** Le document s'ouvre normalement et s'affiche comme un fichier PDF standard.
+2. **Recherche de chaînes brutes :** J'ai tenté d'extraire directement le flag à l'aide de l'outil `strings` combiné avec `grep` :
+   ```bash
+   strings document.pdf | grep -i "pico"
+   ```
+   _Résultat :_ Aucune donnée ou chaîne intéressante n'apparaît par cette méthode.
 
-### 🚩 Étape 3 : Récupération du Flag
+---
 
-1-Téléchargement / enregistrement de l'image restituée depuis CyberChef.  
-2-Ouverture et lecture du fichier image.  
-3-Le flag apparaît directement écrit sur l'image.
+## 🛠️ Étape 2 : Analyse des métadonnées (`exiftool`)
 
-#### Flag : picoCTF{...} (à remplacer par ton flag)
+En l'absence d'indices dans le contenu visible ou les chaînes textuelles brutes, j'ai inspecté les métadonnées du document avec **ExifTool** :
 
-## English Version:
+```bash
+exiftool document.pdf
+```
 
-### 📋 Challenge Info
+**Observation :**
+Dans les champs de métadonnées, le champ **Author** contient une chaîne de caractères suspecte encodée en **Base64**.
 
-Challenge Name: Binary Digits
-Platform / Event: picoCTF 2026
-Author: Yahaya Meddy
-Category: Forensics
-Difficulty: Easy
+---
 
-### 📝 Description
+## 🚩 Étape 3 : Décodage du Flag avec CyberChef
 
-"This file doesn't look like much... just a bunch of 1s and 0s. But maybe it's not just random noise. Can you recover anything meaningful from this?"
+1. Copie de la chaîne Base64 présente dans le champ **Author**.
+2. Ouverture de l'outil **CyberChef**.
+3. Collage du texte dans le panneau **Input**.
+4. Application de la recette **`From Base64`** dans la section **Recipe**.
+5. Le flag apparaît en clair dans le panneau **Output**.
 
-### 🔍 Step 1: File Analysis
+**Flag :** `picoCTF{...}` _(à remplacer par ton flag)_
 
-After downloading the file provided via the challenge link, I opened it using a text editor on Kali Linux.  
-Observation:
-The file contains only a raw stream of characters consisting of 0s and 1s (data in ASCII binary format).
+# Write-Up: Riddle Registry
 
-### 🛠️ Step 2: Decoding with CyberChef
+## 📋 Challenge Info
 
-To convert this binary stream into an executable/usable file:  
-1-Open the CyberChef tool.  
-2-Copy and paste the file contents into the Input section.  
-3-Apply the "From Binary" recipe in the Recipe section.  
-Result : The binary decoding reconstructed the file's original bytes, revealing that it was actually an image file (e.g., PNG/JPG).
+- **Challenge Name:** Riddle Registry
+- **Platform / Event:** picoMini by CMU-Africa
+- **Author:** Prince Niyonshuti N.
+- **Category:** Forensics
+- **Difficulty:** Easy
 
-### 🚩 Step 3: Flag Retrieval
+---
 
-1-Download / save the restored image from CyberChef.  
-2-Open and view the image file.  
-3-The flag appears directly written on the image.
+## 📝 Description
 
-#### Flag: picoCTF{...} (replace with your actual flag)
+> _"Hi, intrepid investigator! 📄 🔍 You've stumbled upon a peculiar PDF filled with what seems like nothing more than garbled nonsense. But beware! Not everything is as it appears. Amidst the chaos lies a hidden treasure—an elusive flag waiting to be uncovered. Find the PDF file here Hidden Confidential Document and uncover the flag within the metadata."_
+
+---
+
+## 🔍 Step 1: Initial Inspection & First Attempts
+
+After downloading the provided PDF file, the initial inspection yielded no obvious visual leads:
+
+1. **Opening the file:** The document opens normally as a standard PDF file.
+2. **Raw string search:** I attempted to find the flag directly using `strings` piped into `grep`:
+   ```bash
+   strings document.pdf | grep -i "pico"
+   ```
+   _Result:_ No relevant hits or flags were found using this command.
+
+---
+
+## 🛠️ Step 2: Metadata Analysis (`exiftool`)
+
+Since searching through the raw content was unsuccessful, I inspected the document's metadata using **ExifTool**:
+
+```bash
+exiftool document.pdf
+```
+
+**Observation:**
+Within the metadata fields, the **Author** attribute contains a suspicious Base64-encoded string.
+
+---
+
+## 🚩 Step 3: Flag Decoding via CyberChef
+
+1. Copy the Base64 string found inside the **Author** field.
+2. Open **CyberChef**.
+3. Paste the string into the **Input** box.
+4. Add the **`From Base64`** recipe.
+5. The plaintext flag is decoded and displayed in the **Output** box.
+
+**Flag:** `picoCTF{...}` _(replace with your actual flag)_
